@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Oversetter</title>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Logget inn som {{ current_user.username }}</h1>
+        <h2>Her kan du bestille bok oversetter</h2>
+
+        <form method="POST" action="{{ url_for('oversetter') }}">
+            <p>Hvilken bok:</p>
+            <input type="text" name="bok" placeholder="Skriv inn boktittel" required>
+
+            <p>Hvilket språk:</p>
+            <select name="bestilling" required>
+                <option value="Engelsk">Engelsk</option>
+                <option value="Spansk">Spansk</option>
+                <option value="Fransk">Fransk</option>
+                <option value="Tysk">Tysk</option>
+                <option value="Arabisk">Arabisk</option>
+                <option value="Russisk">Russisk</option>
+            </select>
+
+            <button type="submit">Lagre bestilling</button>
+        </form>
+
+        <a href="{{ url_for('home') }}">Hjem</a>
+    </div>
+    <script src="static/script.js"></script>
+
+</body>
+</html>
