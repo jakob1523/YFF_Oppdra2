@@ -1,0 +1,1 @@
+document.getElementById("texxta").maxLength = "100";

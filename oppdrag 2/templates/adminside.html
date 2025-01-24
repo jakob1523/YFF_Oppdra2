@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Admin</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello Geir</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Brukernavn</th>
+                    <th>Bok</th>
+                    <th>Bestilling</th>
+                    <th>Tid</th>
+                    <th>Slett</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bestilling in bestillinger %}
+                <tr>
+                    <td>{{ bestilling[1] }}</td>
+                    <td>{{ bestilling[2] }}</td>
+                    <td>{{ bestilling[3] }}</td>
+                    <td>{{ bestilling[4] }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('slett_b') }}">
+                            <input type="hidden" name="brukerid" value="{{ bestilling[0] }}">
+                            <input type="submit" value="Slett">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Brukernavn</th>
+                    <th>Hashed Passord</th>
+                    <th>Tid</th>
+                    <th>Slett</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for brukere in users %}
+                <tr>
+                    <td>{{ brukere[0] }}</td>
+                    <td>{{ brukere[1] }}</td>
+                    <td>{{ brukere[2] }}</td>
+                    <td>{{ brukere[3] }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('slett') }}">
+                            <input type="hidden" name="brukerid" value="{{ brukere[0] }}">
+                            <input type="hidden" name="navn" value="{{ brukere[1] }}">
+                            <input type="submit" value="Slett">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ url_for('home') }}">Hjem</a>
+    </div>
+</body>
+</html>
